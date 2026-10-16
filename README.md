@@ -23,4 +23,4 @@ O projeto é `prj_OY6cTko1mUBIpAM3MFNeTUinRt7D`, equipe `andreas-projects-cde5ae
 
 ## Testes anteriores
 
-O GitHub Pages conserva a página estática de exemplos. Na Vercel, a página inicial entrega o portal real e `/blob.html` redireciona para ele. O endpoint de exemplos continua restrito aos três arquivos fictícios do seu manifesto.
+As páginas antigas do GitHub Pages encaminham para o portal real na Vercel. Na Vercel, `/blob.html` redireciona para a página inicial e os antigos caminhos `/downloads/` e `/arquivos/exemplo/` encaminham para o Excel, um print real ou o ZIP do mês mais recente. Os arquivos fictícios foram retirados do código publicado.

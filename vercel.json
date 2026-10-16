@@ -5,13 +5,18 @@
   "outputDirectory": "dist",
   "regions": ["iad1"],
   "redirects": [{ "source": "/blob.html", "destination": "/", "permanent": false }],
+  "headers": [
+    { "source": "/", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
+    { "source": "/index.html", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
+  ],
   "functions": {
-    "api/download.mjs": { "maxDuration": 300, "includeFiles": "config/blob-files.json" },
+    "api/download.mjs": { "maxDuration": 300 },
     "api/portal.mjs": { "maxDuration": 300 }
   },
   "rewrites": [
     { "source": "/api/catalog", "destination": "/api/portal?operation=catalog" },
     { "source": "/files/:path*", "destination": "/api/portal?path=:path*" },
-    { "source": "/downloads/:file", "destination": "/api/download?file=:file" }
+    { "source": "/downloads/:file", "destination": "/api/download?file=:file" },
+    { "source": "/arquivos/exemplo/:file", "destination": "/api/download?file=:file" }
   ]
 }

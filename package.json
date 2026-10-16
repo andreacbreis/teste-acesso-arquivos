@@ -1,8 +1,15 @@
 {
-  "name": "teste-acesso-arquivos",
+  "name": "consulta-pafs-sefaz-ba",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "engines": { "node": "24.x" },
-  "dependencies": { "@vercel/blob": "2.8.2" }
+  "scripts": { "build": "node scripts/build-portal.mjs" },
+  "dependencies": {
+    "@vercel/blob": "2.8.2",
+    "lucide-react": "1.31.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": { "esbuild": "0.28.2" }
 }

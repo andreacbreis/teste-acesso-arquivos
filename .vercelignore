@@ -3,5 +3,6 @@
 .env*
 .gitignore
 README.md
-scripts/
 node_modules/
+dist/
+work/

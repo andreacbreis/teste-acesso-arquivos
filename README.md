@@ -1,13 +1,26 @@
-# Teste de acesso a hospedagens
+# Consulta PAFs · SEFAZ Bahia
 
-Página e downloads fictícios para testar acesso pela rede de trabalho. Não contém dados reais de processos, credenciais nem integrações com Drive, ChatGPT ou SEFAZ.
+Portal público de consulta e download em https://teste-acesso-arquivos.vercel.app. O endereço foi preservado porque já foi testado na rede de trabalho do destinatário. O nome técnico do projeto e do repositório é legado do teste inicial.
 
-O mesmo conteúdo é publicado na Vercel e no GitHub Pages. Os links são relativos para funcionar na raiz da Vercel e na subpasta do GitHub Pages.
+O frontend React conserva o visual azul da Braskem, a navegação mensal, a busca por ID/PAF, a prévia de prints, o ZIP mensal e o histórico de versões. A identidade visual está documentada em `DESIGN.md`.
 
-## Teste de Vercel Blob
+## Arquitetura
 
-`/blob.html` é o segundo teste, exclusivo da Vercel. Os arquivos ficam em um Blob privado e são transmitidos pela função `api/download.mjs` através de `/downloads/<nome>`, mantendo a origem do site no navegador. O GitHub Pages continua com o teste estático original.
+- O frontend é gerado em `dist/` por `npm run build`.
+- `api/portal.mjs` atende `/api/catalog` e `/files/<caminho>` pela Vercel, lendo o Blob privado. Downloads, prévias e versões passam pelo domínio do portal. Não há endpoint público de escrita.
+- `portal/objects/<sha256>` contém objetos imutáveis. `portal/catalogs/<revisão>.json` preserva cada publicação e `portal/catalog.json` contém o acervo vigente.
+- Os arquivos e o catálogo reais ficam no Blob e no pacote local de trabalho, fora deste repositório público. Credenciais, builds e arquivos de trabalho são ignorados pelo Git.
 
-O manifesto `config/blob-files.json` contém somente os exemplos explicitamente publicados. A função não aceita um caminho arbitrário do armazenamento nem possui endpoint de escrita. O ZIP fictício maior permite verificar a transmissão acima de 4,5 MB. O SDK usa as credenciais do projeto, nunca enviadas ao navegador.
+## Publicação mensal
 
-Para reenviar os exemplos, use uma credencial local do projeto obtida por `vercel env pull` e execute `node --env-file=.env.local scripts/upload-test-files.mjs <pasta-dos-exemplos>`. O script usa caminhos com SHA-256, evita sobrescrita e pode ser executado novamente sem duplicar objetos. A publicação do código deve ocorrer depois do envio completo e da geração do manifesto.
+O manual canônico está em `/Volumes/devandrea/braskem/processo-mensal-sefaz-ba.md` e na aba `INSTRUCOES` da planilha. Ele define a preparação do Excel e dos prints, a verificação da cópia e a criação do pacote.
+
+Renovar as credenciais locais com `npx --yes vercel@64.4.0 env pull .env.local --yes --environment development --scope andreas-projects-cde5ae1f` e executar `node --env-file=.env.local scripts/publish-portal.mjs <pasta-do-pacote> [pasta-com-versões-anteriores]`.
+
+O publicador preserva caminhos e versões anteriores, envia somente objetos ausentes e relê cada objeto para conferir tamanho e SHA-256. Só então troca o catálogo, com condição de ETag para evitar sobrescrever uma publicação concorrente. O parâmetro `--initialize` é reservado à primeira migração. Atualizações do acervo não exigem novo deploy de código.
+
+O projeto é `prj_OY6cTko1mUBIpAM3MFNeTUinRt7D`, equipe `andreas-projects-cde5ae1f`, Blob privado `store_urvdgYBxgwU9AdUz`.
+
+## Testes anteriores
+
+O GitHub Pages conserva a página estática de exemplos. Na Vercel, a página inicial entrega o portal real e `/blob.html` redireciona para ele. O endpoint de exemplos continua restrito aos três arquivos fictícios do seu manifesto.

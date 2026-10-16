@@ -36,6 +36,7 @@
     <span class="ok">A página abriu neste navegador</span>
     <h1>Agora, teste os downloads.</h1>
     <p class="intro">Esta página contém somente arquivos fictícios para verificar o acesso à hospedagem e o download de Excel, imagem e ZIP.</p>
+    <p id="blob-test" hidden><a href="./blob.html">Abrir o segundo teste: arquivos no armazenamento</a></p>
     <section aria-labelledby="downloads">
       <h2 id="downloads">Arquivos de exemplo</h2>
       <p><small>Os três arquivos estão em uma subpasta deste mesmo site.</small></p>
@@ -57,6 +58,7 @@
   </main>
   <script>
     document.getElementById('host').textContent = location.hostname.endsWith('github.io') ? 'GitHub Pages' : location.hostname.endsWith('vercel.app') ? 'Vercel' : 'Teste local';
+    document.getElementById('blob-test').hidden = !location.hostname.endsWith('vercel.app');
   </script>
 </body>
 </html>

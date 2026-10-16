@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "regions": ["iad1"],
+  "functions": {
+    "api/download.mjs": {
+      "maxDuration": 300,
+      "includeFiles": "config/blob-files.json"
+    }
+  },
+  "rewrites": [
+    { "source": "/downloads/:file", "destination": "/api/download?file=:file" }
+  ]
+}

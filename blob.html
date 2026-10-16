@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Teste de armazenamento na Vercel</title>
+  <style>
+    :root { color-scheme: light; --blue:#005ca9; --ink:#243c50; --muted:#536b7c; --line:#d4e2ee; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#f3f7fb; color:var(--ink); font:15px/1.65 Verdana,sans-serif; }
+    header { background:var(--blue); color:white; padding:22px max(24px,calc((100vw - 880px)/2)); }
+    header strong { font-size:17px; }
+    main { max-width:928px; margin:0 auto; padding:54px 24px 34px; }
+    h1 { font-size:clamp(28px,4vw,40px); line-height:1.2; letter-spacing:-.035em; color:var(--blue); margin:0 0 18px; }
+    .intro { max-width:65ch; margin:0 0 30px; color:var(--muted); }
+    section { background:white; border:1px solid var(--line); border-radius:10px; padding:28px; margin:20px 0; }
+    h2 { font-size:19px; margin:0 0 12px; line-height:1.4; }
+    p { margin:8px 0; }
+    ol { padding-left:22px; margin:12px 0 0; }
+    li { padding:5px 0; }
+    .downloads { list-style:none; padding:0; }
+    .downloads li + li { border-top:1px solid var(--line); }
+    .downloads a { display:flex; justify-content:space-between; gap:18px; padding:15px 0; color:var(--blue); font-weight:bold; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    a:focus-visible { outline:3px solid var(--blue); outline-offset:5px; }
+    small { font-size:12px; color:var(--muted); font-weight:normal; }
+    .ok { display:inline-block; color:#174e39; background:#edf8f1; padding:5px 12px; border-radius:20px; font-size:12px; margin-bottom:24px; }
+    footer { color:var(--muted); font-size:12px; margin-top:30px; }
+    @media(max-width:550px) { main { padding-top:30px; } section { padding:20px; } .downloads a { display:block; } .downloads small { display:block; margin-top:4px; } }
+  </style>
+</head>
+<body>
+  <header><strong>Teste de armazenamento · Vercel</strong></header>
+  <main>
+    <span class="ok">A página abriu neste navegador</span>
+    <h1>Teste os arquivos do armazenamento.</h1>
+    <p class="intro">Este segundo teste usa armazenamento separado, mantendo os downloads no mesmo endereço da Vercel. Todos os arquivos são fictícios.</p>
+    <section aria-labelledby="downloads">
+      <h2 id="downloads">Arquivos de exemplo</h2>
+      <p><small>Baixe os três arquivos abaixo. O ZIP tem cerca de 10 MB, tamanho próximo a um lote mensal de evidências.</small></p>
+      <ul class="downloads">
+        <li><a href="./downloads/planilha-teste.xlsx" download>Baixar planilha de teste <small>Excel · .xlsx</small></a></li>
+        <li><a href="./downloads/imagem-teste.png" download>Baixar imagem de teste <small>Imagem · .png</small></a></li>
+        <li><a href="./downloads/pacote-teste-10mb.zip" download>Baixar pacote de teste <small>Arquivo maior · .zip · 10 MB</small></a></li>
+      </ul>
+    </section>
+    <section aria-labelledby="como-testar">
+      <h2 id="como-testar">O que conferir</h2>
+      <ol>
+        <li>Baixe os três arquivos, incluindo o ZIP de 10 MB.</li>
+        <li>Abra a planilha e a imagem. Extraia o ZIP.</li>
+        <li>Informe quais etapas funcionaram e, se houver bloqueio, qual mensagem apareceu.</li>
+      </ol>
+    </section>
+    <footer>Vercel Blob privado. Downloads públicos somente dos exemplos desta página. Sem dados reais de processos.</footer>
+  </main>
+
+</body>
+</html>

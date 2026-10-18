@@ -11,7 +11,16 @@ if (!sources.length) throw new Error('Informe a pasta do pacote e, opcionalmente
 const incoming = JSON.parse(await fs.readFile(path.join(sources[0], 'catalog.json'), 'utf8'));
 if (incoming.version !== 1 || !Array.isArray(incoming.files) || !incoming.files.length) throw new Error('Pacote inválido.');
 let current = null;
-try { current = await readCatalog(); }
+try {
+  current = await readCatalog();
+  // Compressed reads can return a weak ETag. Conditional writes require the
+  // strong storage ETag, matched to the catalog body before we use it.
+  const metadata = await head(CATALOG_KEY);
+  if (!metadata.etag || metadata.etag.startsWith('W/') || current.etag?.replace(/^W\//, '') !== metadata.etag) {
+    throw new Error('O catálogo mudou durante a leitura. Prepare um novo pacote.');
+  }
+  current.etag = metadata.etag;
+}
 catch (error) { if (!(error instanceof BlobNotFoundError) && error.message !== 'Catálogo indisponível') throw error; }
 if (current && JSON.stringify(current.value.files) === JSON.stringify(incoming.files)) {
   console.log(JSON.stringify({ status: 'already_published', revision: current.value.revision, files: incoming.files.length }));

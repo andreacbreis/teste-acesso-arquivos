@@ -17,7 +17,7 @@ O manual canônico está em `/Volumes/devandrea/braskem/processo-mensal-sefaz-ba
 
 Renovar as credenciais locais com `npx --yes vercel@64.4.0 env pull .env.local --yes --environment development --scope andreas-projects-cde5ae1f` e executar `node --env-file=.env.local scripts/publish-portal.mjs <pasta-do-pacote> [pasta-com-versões-anteriores]`.
 
-O publicador preserva caminhos e versões anteriores, envia somente objetos ausentes e relê cada objeto para conferir tamanho e SHA-256. Só então troca o catálogo, com condição de ETag para evitar sobrescrever uma publicação concorrente. O parâmetro `--initialize` é reservado à primeira migração. Atualizações do acervo não exigem novo deploy de código.
+O publicador preserva caminhos e versões anteriores, envia somente objetos ausentes e relê cada objeto para conferir tamanho e SHA-256. Só então troca o catálogo, com condição de ETag para evitar sobrescrever uma publicação concorrente. Para essa condição, usa o ETag forte de `head`, conferido contra o ETag da leitura do catálogo; uma leitura comprimida pode fornecer um ETag fraco que não é aceito na escrita. O parâmetro `--initialize` é reservado à primeira migração. Atualizações do acervo não exigem novo deploy de código.
 
 O projeto é `prj_OY6cTko1mUBIpAM3MFNeTUinRt7D`, equipe `andreas-projects-cde5ae1f`, Blob privado `store_urvdgYBxgwU9AdUz`.
 

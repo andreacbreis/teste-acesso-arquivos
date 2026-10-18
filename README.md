@@ -1,6 +1,6 @@
 # Consulta PAFs · SEFAZ Bahia
 
-Portal público de consulta e download em https://teste-acesso-arquivos.vercel.app. O endereço foi preservado porque já foi testado na rede de trabalho do destinatário. O nome técnico do projeto e do repositório é legado do teste inicial.
+Portal público de consulta e download em https://consulta-sefaz-braskem.vercel.app. O projeto Vercel é `consulta-sefaz-braskem`. O endereço anterior `teste-acesso-arquivos.vercel.app` permanece compatível para os links já compartilhados; o repositório e a pasta local conservam o nome anterior.
 
 O frontend React conserva o visual azul da Braskem, a navegação mensal, a busca por ID/PAF, a prévia de prints, o ZIP mensal e o histórico de versões. A identidade visual está documentada em `DESIGN.md`.
 
